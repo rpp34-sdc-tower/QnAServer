@@ -22,12 +22,13 @@ const getQuestions = (id, page, count) => {
   //   ${sort}
   //   LIMIT ${count};
   //   `;
-  let queryString = `select * from questions where product_id = 1;`;
+  let queryString = `select question_id, question_body, question_date, asker_name, question_helpfulness, reported from questions where product_id = ${id};`;
 
 
   return pool
     .query(queryString)
     .then(data => {
+      //below takes care of the answers of a questions
       for (var i = 0; i < data.rows.length; i++) {
         if (data.rows[i].photos === null) {
           data.rows[i].photos = [];
