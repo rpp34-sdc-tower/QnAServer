@@ -1,0 +1,2 @@
+
+select * from questions where product_id = 1;

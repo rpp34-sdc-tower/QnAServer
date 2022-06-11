@@ -46,3 +46,10 @@ COPY answer_photos(id, answer_id, url)
 FROM '/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/raw_csv_data/answers_photos.csv'
 DELIMITER ','
 CSV HEADER;
+
+//this is the change the name of the column
+ALTER TABLE questions
+  RENAME COLUMN id TO question_id;
+
+ALTER TABLE questions
+  RENAME COLUMN helpful TO question_helpfulness;

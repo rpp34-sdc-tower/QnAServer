@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const db = require('./db/queries');
 
+
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -14,20 +15,17 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello World! Welcome to the Jurassic Park -background music-");
 });
 
-//an example to get data from db
-app.get('/users', db.getUsers);
-
 // -------- ALL GET request below --------
 // get a list of questions for a particular product
 app.get('/qa/questions', (req, res) => {
   let page = req.query.page || 1;
   let count = req.query.count || 5;
-  let sort = req.query.sort || 'relevant';
   let id = req.query.product_id;
 
-  getReviews(id, sort, count, page)
+  db.getQuestions(id, page, count)
     .then(data => {
-      res.status(200).json(data);
+      console.log("server recieved data from DB", data);
+      //res.status(200).json(data);
     })
     .catch(err => {
       res.status(500).send('server get reviews error');

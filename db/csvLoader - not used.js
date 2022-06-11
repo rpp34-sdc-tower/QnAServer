@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
 const fs = require('fs');
 const { Pool } = require('pg');
