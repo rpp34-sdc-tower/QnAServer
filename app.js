@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World! Welcome to the Jurassic Park -background music-");
+  res.status(200).send("Hello World! Welcome to the Jurassic Park");
 });
 
 // -------- ALL GET request below --------
@@ -22,14 +22,11 @@ app.get('/qa/questions', (req, res) => {
   let count = req.query.count || 5;
   let id = req.query.product_id;
 
-  db.getQuestions(id, page, count)
-    .then(data => {
-      console.log("server recieved data from DB", data);
-      //res.status(200).json(data);
-    })
-    .catch(err => {
-      res.status(500).send('server get reviews error');
-    })
+  db.getQuestions(id, page, count, (err, data) => {
+    console.log("data from server!!!--:", data, "end data from server");
+    res.status(200).send(data);
+  })
+
 });
 
 // Returns answers for a given question.
@@ -50,7 +47,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 app.post('/qa/questions', (req, res) => {
   var newQuestions = req.body;
   addReview(newQuestions.product_id, newQuestions.rating, newQuestions.summary, newQuestions.body, newQuestions.recommend, newQuestions.name, newQuestions.email)
-    .then (id => {
+    .then(id => {
       addPhotos(id, newQuestions.photos);
       addCharacteristicsReviews(id, newQuestions.characteristics);
       res.sendStatus(201);
@@ -65,7 +62,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
   let id = req.params.question_id;
   var newQuestions = req.body;
   addReview(newQuestions.product_id, newQuestions.rating, newQuestions.summary, newQuestions.body, newQuestions.recommend, newQuestions.name, newQuestions.email)
-    .then (id => {
+    .then(id => {
       addPhotos(id, newQuestions.photos);
       addCharacteristicsReviews(id, newQuestions.characteristics);
       res.sendStatus(201);

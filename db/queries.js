@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const getQuestions = require('./getQuestions');
+const getOneQuestion = require('./getOneQuestion');
 const getAnswers = require('./getAnswers');
 const addQuestion = require('./addQuestion');
 const addAnswer = require('./addAnswer');
@@ -9,5 +10,5 @@ const markAnswerHelpful = require('./markAnswerHelpful');
 const reportAnswer = require('./reportAnswer');
 
 module.exports = {
-  getQuestions, getAnswers, addQuestion, addAnswer, markQuestionHelpful, reportQuestion, markAnswerHelpful, reportAnswer
+  getQuestions, getOneQuestion, getAnswers, addQuestion, addAnswer, markQuestionHelpful, reportQuestion, markAnswerHelpful, reportAnswer
 }
