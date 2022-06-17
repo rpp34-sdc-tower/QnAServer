@@ -1,47 +1,44 @@
 /* eslint-disable no-undef */
+require("util").inspect.defaultOptions.depth = null;
+const getOne = require('./getOneQuestion');
 const pool = require('./pool');
 
-const getQuestions = (id, page, count) => {
+const getQuestions = (id, page, count, callback) => {
 
-  // let queryString = `
-  // SELECT r.review_id, r.rating, r.summary, r.recommend, r.response, r.body, to_timestamp(r.date/1000) AS date, r.reviewer_name, r.helpfulness,
-  // (
-  //   SELECT array_to_json(array_agg(photosGroup)) FROM
-  //     (
-  //        SELECT p.photo_id AS id, p.url
-  //        FROM reviews_photos p
-  //        inner join reviews
-  //        on p.review_id = reviews.review_id
-  //        WHERE p.review_id = r.review_id
-  //        GROUP BY p.photo_id
-  //        ) photosGroup
-  //      ) AS photos
-  //   FROM reviews r
-  //   WHERE r.product_id = ${id} AND r.reported = false
-  //   GROUP BY r.review_id
-  //   ${sort}
-  //   LIMIT ${count};
-  //   `;
-  let queryString = `select * from questions where product_id = 1;`;
-
+  let queryString1 = `SELECT question_id, question_body, question_date, 
+asker_name, question_helpfulness, reported 
+FROM questions WHERE product_id = ${id} 
+AND reported = 0
+LIMIT ${count}`;
 
   return pool
-    .query(queryString)
+    .query(queryString1)
     .then(data => {
-      for (var i = 0; i < data.rows.length; i++) {
-        if (data.rows[i].photos === null) {
-          data.rows[i].photos = [];
-        }
-        if (data.rows[i].response === 'null') {
-          data.rows[i].response = null;
-        }
+      data.rows.forEach(row => {
+        var date = new Date(row.question_date / 1000);
+        row.question_date = date.toISOString();
+        row.reported = false;
+      })
+      var allQuestions = {
+        results: data.rows,
       }
-      var questions = {
-        product: id,
-        results: data.rows
-      }
-      return questions;
+      return allQuestions;
     })
+    .then(data => {
+      getOne(data, (err, result) => {
+        if (err) {
+          console.log('getOnequestions\'s error', err);
+        }
+        //console.log('result...:', result, '---end result');
+        callback(null, result);
+      })
+    })
+    // .then(data => {
+    //   var allQuestions = { product_id: id };
+    //   allQuestions["results"] = data;
+    //   console.log('---data:  ..', data, '---end');
+    //   //return allQuestions;
+    // })
     .catch(err => console.log('Error executing getQuestions query', err))
 }
 

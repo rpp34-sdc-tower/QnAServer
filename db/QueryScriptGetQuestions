@@ -1,2 +1,7 @@
-
-select * from questions where product_id = 1;
+SELECT answers.id as answer_id, answers.body, to_timestamp(answers.date_written/1000) as date, answers.answerer_name, answers.helpful as helpfulness, 
+json_agg(json_build_object('id', answer_photos.id, 'url', answer_photos.url)) AS photos 
+from answers 
+left JOIN answer_photos ON answer_photos.answer_id = answers.id 
+WHERE answers.question_id = 1
+AND reported = 0
+GROUP BY answers.id;
