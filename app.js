@@ -46,20 +46,18 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 /*--- END ALL GET REQUESTS ---*/
 
-// -------- ALL POST request below --------
+/*--- ALL POST request below ---*/
 // post an question
 app.post('/qa/questions', (req, res) => {
-  var newQuestions = req.body;
-  addReview(newQuestions.product_id, newQuestions.rating, newQuestions.summary, newQuestions.body, newQuestions.recommend, newQuestions.name, newQuestions.email)
-    .then(id => {
-      addPhotos(id, newQuestions.photos);
-      addCharacteristicsReviews(id, newQuestions.characteristics);
-      res.sendStatus(201);
+  var newQuestion = req.query;
+  db.addQuestion(newQuestion.product_id, newQuestion.body, newQuestion.name, newQuestion.email)
+    .then(() => {
+      res.status(201).send('CREATED');
     })
     .catch(err => {
       res.status(500).send('server post question error');
     })
-})
+});
 
 // post an answer
 app.post('/qa/questions/:question_id/answers', (req, res) => {
@@ -75,6 +73,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
       res.status(500).send('server post answer error');
     })
 })
+/*--- ALL POST request END ---*/
 
 // -------- ALL put requests below --------
 // report a questions as helpful
