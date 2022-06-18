@@ -33,12 +33,6 @@ LIMIT ${count}`;
         callback(null, result);
       })
     })
-    // .then(data => {
-    //   var allQuestions = { product_id: id };
-    //   allQuestions["results"] = data;
-    //   console.log('---data:  ..', data, '---end');
-    //   //return allQuestions;
-    // })
     .catch(err => console.log('Error executing getQuestions query', err))
 }
 
