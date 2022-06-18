@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello World! Welcome to the Jurassic Park");
 });
 
-// -------- ALL GET request below --------
+/*--- ALL GET reques ---*/
 // get a list of questions for a particular product
 app.get('/qa/questions', (req, res) => {
   let page = req.query.page || 1;
@@ -24,23 +24,27 @@ app.get('/qa/questions', (req, res) => {
 
   db.getQuestions(id, page, count, (err, data) => {
     console.log("data from server!!!--:", data, "end data from server");
-    res.status(200).send(data);
+    if (err) {
+      res.status(500).send('server get Questions error!');
+    }
+    res.status(200).json(data);
   })
 
 });
 
 // Returns answers for a given question.
 app.get('/qa/questions/:question_id/answers', (req, res) => {
-  let id = req.query.product_id;
-  getReviewsMetadata(id)
+  let id = req.params.question_id;
+  db.getAnswers(id)
     .then(data => {
+      console.log('Getting answers in server now...', data)
       res.status(200).json(data);
     })
     .catch(err => {
-      res.status(500).send('server get reviews metadata error');
+      res.status(500).send('server get Answers error');
     })
 });
-
+/*--- END ALL GET REQUESTS ---*/
 
 // -------- ALL POST request below --------
 // post an question
