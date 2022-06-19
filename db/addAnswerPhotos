@@ -1,0 +1,19 @@
+/* eslint-disable no-undef */
+require("util").inspect.defaultOptions.depth = null;
+const pool = require('./pool');
+
+const addAnswerPhotos = (answerId, url) => {
+    var newUrl = "'" + url + "'";
+    let queryString = `INSERT INTO answer_photos (answer_id, url, id)
+    VALUES (${answerId}, ${newUrl}, ((SELECT MAX(id) FROM answer_photos)+1));`;
+
+    return pool
+        .query(queryString)
+        .then(() => {
+            console.log('successfully adding photos to answers')
+            return;
+        })
+        .catch(err => console.log('Error executing add Answer photo query', err))
+}
+
+module.exports = addAnswerPhotos;

@@ -5,7 +5,6 @@ const app = express();
 const cors = require("cors");
 const db = require('./db/queries');
 
-
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -52,7 +51,7 @@ app.post('/qa/questions', (req, res) => {
   var newQuestion = req.query;
   db.addQuestion(newQuestion.product_id, newQuestion.body, newQuestion.name, newQuestion.email)
     .then(() => {
-      res.status(201).send('CREATED');
+      res.status(201).send('CREATED new question');
     })
     .catch(err => {
       res.status(500).send('server post question error');
@@ -61,22 +60,26 @@ app.post('/qa/questions', (req, res) => {
 
 // post an answer
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  let id = req.params.question_id;
-  var newQuestions = req.body;
-  addReview(newQuestions.product_id, newQuestions.rating, newQuestions.summary, newQuestions.body, newQuestions.recommend, newQuestions.name, newQuestions.email)
+  let questionId = req.params.question_id;
+  var newAnswer = req.query;
+  db.addAnswer(questionId, newAnswer.body, newAnswer.name, newAnswer.email)
     .then(id => {
-      addPhotos(id, newQuestions.photos);
-      addCharacteristicsReviews(id, newQuestions.characteristics);
-      res.sendStatus(201);
+      //console.log(JSON.stringify(newAnswer.photos));
+      db.addAnswerPhotos(id, newAnswer.photos)
+      return;
+    })
+    .then(() => {
+      res.status(201).send('CREATED new answer & answer\'s photos');
     })
     .catch(err => {
-      res.status(500).send('server post answer error');
+      res.status(500).send('server post question error');
     })
-})
+});
 /*--- ALL POST request END ---*/
 
 // -------- ALL put requests below --------
 // report a questions as helpful
+/*
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   let id = req.params.question_id;
   markReviewHelpful(id)
@@ -124,6 +127,6 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
       res.status(500).send('server put a answers report error');
     })
 });
-
+*/
 
 module.exports = app;
