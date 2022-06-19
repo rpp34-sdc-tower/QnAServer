@@ -79,12 +79,12 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 
 // -------- ALL put requests below --------
 // report a questions as helpful
-/*
+
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   let id = req.params.question_id;
-  markReviewHelpful(id)
+  db.markQuestionHelpful(id)
     .then(() => {
-      res.sendStatus(204).send('NO CONTENT');
+      res.status(204).send('NO CONTENT');
     })
     .catch(err => {
       res.status(500).send('server put a questions helpful error');
@@ -94,16 +94,16 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 // report a question
 app.put('/qa/questions/:question_id/report', (req, res) => {
   let id = req.params.question_id;
-  markReviewReported(id)
+  db.reportQuestion(id)
     .then(() => {
-      res.sendStatus(204).send('NO CONTENT');
+      res.status(204).send('NO CONTENT');
     })
     .catch(err => {
       res.status(500).send('server put a questions report error');
     })
 });
 
-
+/*
 // report a answer as helpful
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   let id = req.params.answer_id;
