@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1655745499315" clover="3.2.0">
-  <project timestamp="1655745499315" name="All files">
-    <metrics statements="132" coveredstatements="112" conditionals="26" coveredconditionals="19" methods="37" coveredmethods="27" elements="195" coveredelements="158" complexity="0" loc="132" ncloc="132" packages="2" files="13" classes="13"/>
+<coverage generated="1655745844680" clover="3.2.0">
+  <project timestamp="1655745844680" name="All files">
+    <metrics statements="184" coveredstatements="157" conditionals="26" coveredconditionals="19" methods="61" coveredmethods="44" elements="271" coveredelements="220" complexity="0" loc="184" ncloc="184" packages="2" files="13" classes="13"/>
     <package name="QnAServer">
-      <metrics statements="38" coveredstatements="34" conditionals="6" coveredconditionals="3" methods="13" coveredmethods="10"/>
+      <metrics statements="58" coveredstatements="50" conditionals="6" coveredconditionals="3" methods="25" coveredmethods="18"/>
       <file name="app.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/app.js">
-        <metrics statements="38" coveredstatements="34" conditionals="6" coveredconditionals="3" methods="13" coveredmethods="10"/>
+        <metrics statements="58" coveredstatements="50" conditionals="6" coveredconditionals="3" methods="25" coveredmethods="18"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -43,11 +43,31 @@
         <line num="69" count="1" type="stmt"/>
         <line num="72" count="1" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="122" count="1" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
         <line num="132" count="1" type="stmt"/>
       </file>
     </package>
     <package name="QnAServer.db">
-      <metrics statements="94" coveredstatements="78" conditionals="20" coveredconditionals="16" methods="24" coveredmethods="17"/>
+      <metrics statements="126" coveredstatements="107" conditionals="20" coveredconditionals="16" methods="36" coveredmethods="26"/>
       <file name="addAnswer.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/addAnswer.js">
         <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
         <line num="2" count="1" type="stmt"/>
@@ -62,7 +82,7 @@
         <line num="21" count="1" type="stmt"/>
       </file>
       <file name="addAnswerPhotos" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/addAnswerPhotos">
-        <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <metrics statements="10" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -71,7 +91,7 @@
         <line num="10" count="1" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
       </file>
       <file name="addQuestion.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/addQuestion.js">
@@ -147,10 +167,26 @@
         <line num="39" count="1" type="stmt"/>
       </file>
       <file name="markAnswerHelpful.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/markAnswerHelpful.js">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
       <file name="markQuestionHelpful.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/markQuestionHelpful.js">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
       <file name="pool.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/pool.js">
         <metrics statements="3" coveredstatements="3" conditionals="10" coveredconditionals="10" methods="0" coveredmethods="0"/>
@@ -173,10 +209,26 @@
         <line num="13" count="1" type="stmt"/>
       </file>
       <file name="reportAnswer.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/reportAnswer.js">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
       <file name="reportQuestion.js" path="/Users/king-manchow/Documents/HackReactor/SDC/QnAServer/db/reportQuestion.js">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
       </file>
     </package>
   </project>

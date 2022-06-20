@@ -63,3 +63,47 @@ describe("Test POST /qa/questions/:question_id/answers", () => {
       .expect(201);
   });
 });
+
+describe("Test PUT /qa/questions/:question_id/helpful", () => {
+  test("It should response the PUT method", () => {
+    return request(app)
+      .put("/qa/questions/:question_id/helpful")
+      .query({
+        question_id: 10010,
+      })
+      .expect(204);
+  });
+});
+
+describe("Test PUT /qa/questions/:question_id/report", () => {
+  test("It should response the PUT method", () => {
+    return request(app)
+      .put("/qa/questions/:question_id/report")
+      .query({
+        question_id: 10010,
+      })
+      .expect(204);
+  });
+});
+
+describe("Test PUT /qa/answers/:answer_id/helpful", () => {
+  test("It should response the PUT method", () => {
+    return request(app)
+      .put("/qa/answers/:answer_id/helpful")
+      .query({
+        answer_id: 10010,
+      })
+      .expect(204);
+  });
+});
+
+describe("Test PUT /qa/answers/:answer_id/report", () => {
+  test("It should response the PUT method", () => {
+    return request(app)
+      .put("/qa/answers/:answer_id/report")
+      .query({
+        answer_id: 10010,
+      })
+      .expect(204);
+  });
+});
