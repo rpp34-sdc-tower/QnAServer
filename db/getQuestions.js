@@ -29,7 +29,6 @@ LIMIT ${count}`;
         if (err) {
           console.log('getOnequestions\'s error', err);
         }
-        //console.log('result...:', result, '---end result');
         callback(null, result);
       })
     })

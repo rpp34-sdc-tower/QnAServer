@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require('./db/queries');
+const pool = require('./db/pool');
 
 // middleware
 app.use(cors());
@@ -16,20 +17,68 @@ app.get("/", (req, res) => {
 
 /*--- ALL GET reques ---*/
 // get a list of questions for a particular product
-app.get('/qa/questions', (req, res) => {
+// app.get('/qa/questions', (req, res) => {
+//   let page = req.query.page || 1;
+//   let count = req.query.count || 5;
+//   let id = req.query.product_id;
+
+//   db.getQuestions(id, page, count, (err, data) => {
+//     if (err) {
+//       res.status(500).send('server get Questions error!');
+//     }
+//     console.log('---',data.rows);
+//     return data.rows;
+//   })
+//     .then((data) => {
+//       res.status(200).send(data);
+//     })
+// });
+
+app.get(`/qa/questions`, async (req, res) => {
   let page = req.query.page || 1;
   let count = req.query.count || 5;
   let id = req.query.product_id;
-
-  db.getQuestions(id, page, count, (err, data) => {
-    console.log("data from server!!!--:", data, "end data from server");
-    if (err) {
-      res.status(500).send('server get Questions error!');
+  let ret = { product_id: id }
+  const eachQuestion = async (qs) => {
+    for (let q of qs.results) {
+      q.answers = {};
+      let answers = await pool.query(`SELECT 
+      answers.id, 
+      answers.body, 
+      to_timestamp(answers.date_written/1000) as date,
+      answers.answerer_name,
+      answers.helpful as helpfulness, 
+      json_agg(answer_photos.url) AS photos
+      FROM answers 
+      LEFT JOIN answer_photos 
+      ON answer_photos.answer_id = answers.id
+      WHERE question_id = ${q.question_id} 
+      AND reported = 0 GROUP BY answers.id`);
+      for (let answer of answers.rows) {
+        q.answers[JSON.stringify(answer.id)] = answer
+      }
     }
-    res.status(200).json(data);
-  })
+    res.send(qs);
+  };
+  pool.query(`SELECT 
+  question_id, 
+  question_body,
+  to_timestamp(question_date/1000) as question_date, 
+  asker_name,
+   question_helpfulness,
+   reported 
+   FROM questions WHERE product_id = ${id} 
+   AND reported = 0 
+   LIMIT ${count}`)
+    .then(output => {
+      ret.results = output.rows;
+      return ret
+    })
+    .then(() => {
+      eachQuestion(ret)
+    })
 
-});
+})
 
 // Returns answers for a given question.
 app.get('/qa/questions/:question_id/answers', (req, res) => {
