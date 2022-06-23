@@ -29,7 +29,7 @@ const getOneQuestion = (data, cb) => {
           }
         })
         //console.log('allD--', allDataResult);
-        cb(null, allDataResult);
+        cb(null, data);
       })
       .catch(err => console.log('Error executing getQuestions query', err))
   })
