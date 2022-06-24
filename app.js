@@ -5,6 +5,8 @@ const app = express();
 const cors = require("cors");
 const db = require('./db/queries');
 const pool = require('./db/pool');
+const path = require('path');
+
 
 // middleware
 app.use(cors());
@@ -177,5 +179,21 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     })
 });
 
+//below is loader.io site ownership verification
+//http://18.212.165.24:3000/loaderio-086a639156dd0515ab3b5484ee65f621.txt
+app.get('/loaderio-086a639156dd0515ab3b5484ee65f621.txt', async (req, res) => {
+  var options = {
+    root: path.join(__dirname)
+  };
+
+  var fileName = 'loaderio-086a639156dd0515ab3b5484ee65f621.txt';
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      next(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+});
 
 module.exports = app;
