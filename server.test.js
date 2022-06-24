@@ -19,7 +19,7 @@ describe("Test GET /qa/questions", () => {
       .query({
         page: 1,
         count: 10,
-        product_id: 900010
+        product_id: 1000010
       })
       .expect(200);
   });
