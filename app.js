@@ -181,12 +181,12 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 
 //below is loader.io site ownership verification
 //http://18.212.165.24:3000/loaderio-086a639156dd0515ab3b5484ee65f621.txt
-app.get('/loaderio-086a639156dd0515ab3b5484ee65f621.txt', async (req, res) => {
+app.get('/loaderio-b303ab9663f8fe00b42f0b1af214a971.txt', async (req, res) => {
   var options = {
     root: path.join(__dirname)
   };
 
-  var fileName = 'loaderio-086a639156dd0515ab3b5484ee65f621.txt';
+  var fileName = 'loaderio-b303ab9663f8fe00b42f0b1af214a971.txt';
   res.sendFile(fileName, options, function (err) {
     if (err) {
       next(err);
