@@ -180,8 +180,8 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 });
 
 //below is loader.io site ownership verification
-//http://18.212.165.24:3000/loaderio-086a639156dd0515ab3b5484ee65f621.txt
-app.get('/loaderio-b303ab9663f8fe00b42f0b1af214a971.txt', async (req, res) => {
+//http://18.207.212.159/loaderio-b303ab9663f8fe00b42f0b1af214a971.txt
+app.get('/loaderio-b303ab9663f8fe00b42f0b1af214a971', async (req, res) => {
   var options = {
     root: path.join(__dirname)
   };
