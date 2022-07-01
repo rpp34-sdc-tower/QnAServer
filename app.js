@@ -189,7 +189,7 @@ app.get('/loaderio-b303ab9663f8fe00b42f0b1af214a971', async (req, res) => {
   var fileName = 'loaderio-b303ab9663f8fe00b42f0b1af214a971.txt';
   res.sendFile(fileName, options, function (err) {
     if (err) {
-      next(err);
+      console.log(err);
     } else {
       console.log('Sent:', fileName);
     }
