@@ -1,19 +1,24 @@
-Project Title - System Design
+Retail Q&A | Back-end services for e-commerce site
+Perform ETL (load csv files to db) and initialize db setups
 
-Overview - A brief description outlining what the project
+In PostgreSQL, run the following queries files:
 
-Table of Contents - You can link to the different sections below
+psql db_name < file_path
 
-Description - A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
+Run schema.sql
 
-Installation - How can another developer get your project up and running on their own? What dependencies are required? Are there environmental requirements? Be specific, and outline steps to take in order to get the project running.
+Run copyData.sql (if deployed to cloud, run copyData-AWS-EC2.sql instead)
 
-Usage:
+Run setPrimarykeySequence.sql
 
-Language: JavaScript
+Run createIndex.sql
+
+After load testing APIs using K6, run deleteK6TestData.sql to delete load test data.
+
+Language: JavaScript | NodeJS | ExpressJS
 
 Style guide: Airbnb JavaScript Style Guide (https://github.com/airbnb/javascript)
 
-Database: 
+Database: Postgres
 
 Test suite: Jest
